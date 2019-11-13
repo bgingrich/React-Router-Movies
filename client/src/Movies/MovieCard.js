@@ -1,13 +1,10 @@
-import React from 'react';
-
+import React from "react";
+import { Link } from "react-router-dom";
 const MovieCard = props => {
-  if (!props) {
-    return <div>Loading movie information...</div>;
-  }
-  const { title, director, metascore, stars } = props;
+  const { title, director, metascore, stars } = props.movie;
   return (
-    <div className="save-wrapper">
-      <div className="movie-card">
+    <div className="movie-card">
+      <Link to={`movies/${props.movie.id}`}>
         <h2>{title}</h2>
         <div className="movie-director">
           Director: <em>{director}</em>
@@ -17,14 +14,12 @@ const MovieCard = props => {
         </div>
         <h3>Actors</h3>
 
-        {stars &&
-          stars.map(star => (
-            <div key={star} className="movie-star">
-              {star}
-            </div>
-          ))}
-      </div>
-      <div className="save-button">Save</div>
+        {stars.map(star => (
+          <div key={star} className="movie-star">
+            {star}
+          </div>
+        ))}
+      </Link>
     </div>
   );
 };
